@@ -18,8 +18,8 @@ RUN yum makecache && \
 
 # install unifi
 RUN curl http://dl.ubnt.com/unifi/4.7.6/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
-    unzip /tmp/UniFi.unix.zip && \
-    mv /tmp/UniFi/ /opt/UniFi/ && \
+    unzip /tmp/UniFi.unix.zip -d /tmp/ && \
+    mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
 
 # add startup.sh
