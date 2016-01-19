@@ -4,7 +4,7 @@
 #
 
 FROM centos:6.7
-MAINTAINER XiangJL xjl-tommy@qq.com
+MAINTAINER XiangJL <xjl-tommy@qq.com>
 
 # add repos
 ADD ./mongodb-org-2.6.repo /etc/yum.repos.d/
@@ -22,10 +22,11 @@ RUN curl http://dl.ubnt.com/unifi/4.7.6/UniFi.unix.zip > /tmp/UniFi.unix.zip && 
     mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
 
-# add startup.sh
-ADD ./startup.sh /opt/unifi/
+# set environment
+ENV JAVA_HOME "/usr/lib/jvm/jre-1.6.0-openjdk.x86_64"
+ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
-VOLUME /opt/unifi/data
+VOLUME ["/opt/unifi/data"]
 EXPOSE 8080 8443 8880 8843
 WORKDIR /opt/unifi
-ENTRYPOINT ["/opt/unifi/startup.sh"]
+ENTRYPOINT ["java","-jar","/opt/unifi/lib/ace.jar","start"]
