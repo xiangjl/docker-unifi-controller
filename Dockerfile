@@ -17,7 +17,7 @@ RUN yum makecache && \
     yum clean all
 
 # install unifi
-RUN curl http://dl.ubnt.com/unifi/4.7.6/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
+RUN curl http://dl.ubnt.com/unifi/5.0.7/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
     unzip /tmp/UniFi.unix.zip -d /tmp/ && \
     mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
