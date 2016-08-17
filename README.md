@@ -1,6 +1,6 @@
 # 基于CentOS的UniFI控制器
 
-控制器版本：4.7.6
+控制器版本：5.0.7
 
 请使用以下命令部署容器：
 
@@ -26,7 +26,7 @@ docker run -d --name unifi \
 
 # Docker Image for Ubiquiti Network's UniFi Controller
 
-Installs the controller from the stable release channel (at them moment: 4.7.6).
+Installs the controller from the stable release channel (at them moment: 5.0.7).
 
 To start the controller, launch a container like this:
 
