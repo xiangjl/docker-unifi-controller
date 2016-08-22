@@ -3,7 +3,7 @@
 # the unifi contoller is used to admin ubunquty wifi access points
 #
 
-FROM centos:6.7
+FROM centos:6.8
 MAINTAINER XiangJL <xjl-tommy@qq.com>
 
 # add repos
@@ -17,7 +17,7 @@ RUN yum makecache && \
     yum clean all
 
 # install unifi
-RUN curl http://dl.ubnt.com/unifi/5.0.7/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
+RUN curl http://dl.ubnt.com/unifi/4.8.20/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
     unzip /tmp/UniFi.unix.zip -d /tmp/ && \
     mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
