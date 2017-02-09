@@ -3,7 +3,7 @@
 # the unifi contoller is used to admin ubunquty wifi access points
 #
 
-FROM centos:6.8
+FROM centos:6
 MAINTAINER XiangJL <xjl-tommy@qq.com>
 
 # add repos
