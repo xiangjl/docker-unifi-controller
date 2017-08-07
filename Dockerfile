@@ -17,7 +17,7 @@ RUN yum makecache && \
     yum clean all
 
 # install unifi
-RUN curl http://dl.ubnt.com/unifi/5.4.11/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
+RUN curl http://dl.ubnt.com/unifi/5.4.18/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
     unzip /tmp/UniFi.unix.zip -d /tmp/ && \
     mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
@@ -27,6 +27,6 @@ ENV JAVA_HOME "/usr/lib/jvm/jre-1.6.0-openjdk.x86_64"
 ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
 VOLUME ["/opt/unifi/data"]
-EXPOSE 8080 8443 8880 8843
+EXPOSE 8080 8443 8880 8843 6789
 WORKDIR /opt/unifi
 ENTRYPOINT ["java","-jar","/opt/unifi/lib/ace.jar","start"]
