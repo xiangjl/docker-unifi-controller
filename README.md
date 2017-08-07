@@ -12,7 +12,7 @@ cd docker-unifi-controller/
 docker build -t xiangjl/unifi-controller .
 
 docker run -d --name unifi \
-  -p 8080:8080 -p 8443:8443 -p 8880:8880 -p 8843:8843 -p 5678:5678 \
+  -p 8080:8080 -p 8443:8443 -p 8880:8880 -p 8843:8843 -p 6789:6789 \
   -v /datadir/of/your/choice:/opt/unifi/data \
   --restart=always \
   xiangjl/unifi-controller
@@ -38,7 +38,7 @@ cd docker-unifi-controller/
 docker build -t xiangjl/unifi-controller .
 
 docker run -d --name unifi \
-  -p 8080:8080 -p 8443:8443 -p 8880:8880 -p 8843:8843 -p 5678 \
+  -p 8080:8080 -p 8443:8443 -p 8880:8880 -p 8843:8843 -p 6789:6789 \
   -v /datadir/of/your/choice:/opt/unifi/data \
   --restart=always \
   xiangjl/unifi-controller
