@@ -13,7 +13,7 @@ ADD ./mongodb-org-2.6.repo /etc/yum.repos.d/
 
 # install software
 RUN yum makecache && \
-    yum install -y mongodb-org java-1.6.0-openjdk unzip && \
+    yum install -y mongodb-org java-1.8.0-openjdk unzip && \
     yum clean all
 
 # install unifi
