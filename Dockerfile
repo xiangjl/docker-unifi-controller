@@ -8,8 +8,6 @@ MAINTAINER XiangJL <xjl-tommy@qq.com>
 
 # add repos
 ADD ./mongodb-org-2.6.repo /etc/yum.repos.d/
-# RUN curl http://mirrors.aliyun.com/repo/Centos-6.repo > /etc/yum.repos.d/CentOS-Base.repo && \
-#     curl http://mirrors.aliyun.com/mongodb/yum/redhat/mongodb-org.repo > /etc/yum.repos.d/mongodb-org.repo
 
 # install software
 RUN yum makecache && \
@@ -23,10 +21,11 @@ RUN curl http://dl.ubnt.com/unifi/5.5.19/UniFi.unix.zip > /tmp/UniFi.unix.zip &&
     rm -rf /tmp/*
 
 # set environment
-ENV JAVA_HOME "/usr/lib/jvm/jre-1.6.0-openjdk.x86_64"
+ENV JAVA_HOME "/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
 VOLUME ["/opt/unifi/data"]
-EXPOSE 8080 8443 8880 8843 6789
+VOLUME ["/opt/unifi/logs"]
+EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp 10001/udp
 WORKDIR /opt/unifi
 ENTRYPOINT ["java","-jar","/opt/unifi/lib/ace.jar","start"]
