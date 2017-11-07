@@ -11,18 +11,22 @@ ADD ./mongodb-org-2.6.repo /etc/yum.repos.d/
 
 # install software
 RUN yum makecache && \
+    yum update -y && \
     yum install -y mongodb-org java-1.8.0-openjdk unzip && \
     yum clean all
 
+# set java environment
+ENV JAVA_HOME "/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
+ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
+
+# set unifi environment
+ENV UNIFI_VERSION "5.4.19"
+
 # install unifi
-RUN curl http://dl.ubnt.com/unifi/5.4.18/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
+RUN curl http://dl.ubnt.com/unifi/$UNIFI_VERSION/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
     unzip /tmp/UniFi.unix.zip -d /tmp/ && \
     mv /tmp/UniFi/ /opt/unifi/ && \
     rm -rf /tmp/*
-
-# set environment
-ENV JAVA_HOME "/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
-ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
 VOLUME ["/opt/unifi/data"]
 VOLUME ["/opt/unifi/logs"]
