@@ -20,7 +20,7 @@ ENV JAVA_HOME "/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
 # set unifi environment
-ENV UNIFI_VERSION "5.4.19"
+ENV UNIFI_VERSION "5.5.24"
 
 # install unifi
 RUN curl http://dl.ubnt.com/unifi/$UNIFI_VERSION/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
