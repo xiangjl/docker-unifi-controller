@@ -1,4 +1,4 @@
-# 基于CentOS的UniFI控制器
+# 基于Alpine的UniFI控制器
 
 控制器版本：5.5.24
 
