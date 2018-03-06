@@ -34,4 +34,5 @@ VOLUME ["/opt/unifi/logs"]
 EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp 10001/udp
 
 WORKDIR /opt/unifi
+
 ENTRYPOINT ["java","-jar","/opt/unifi/lib/ace.jar","start"]
