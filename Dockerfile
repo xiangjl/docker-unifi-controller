@@ -7,7 +7,7 @@ FROM alpine:3.7
 MAINTAINER XiangJL <xjl-tommy@qq.com>
 
 # set unifi environment
-ENV UNIFI_VERSION "5.5.24"
+ENV UNIFI_VERSION "5.6.30"
 
 # install software
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
