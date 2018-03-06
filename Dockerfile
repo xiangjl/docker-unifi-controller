@@ -9,6 +9,10 @@ MAINTAINER XiangJL <xjl-tommy@qq.com>
 # set unifi environment
 ENV UNIFI_VERSION "5.6.30"
 
+# set environment
+ENV JAVA_HOME "/usr/lib/jvm/java-1.8-openjdk"
+ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
+
 # install software
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
 #    apk update
@@ -28,4 +32,5 @@ VOLUME ["/unifi/logs"]
 EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp 10001/udp
 
 WORKDIR /unifi
+
 ENTRYPOINT ["java","-jar","/unifi/lib/ace.jar","start"]
