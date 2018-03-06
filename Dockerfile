@@ -3,33 +3,29 @@
 # the unifi contoller is used to admin ubunquty wifi access points
 #
 
-FROM centos:6
+FROM alpine:3.7
 MAINTAINER XiangJL <xjl-tommy@qq.com>
-
-# add repos
-ADD ./mongodb-org-2.6.repo /etc/yum.repos.d/
-
-# install software
-RUN yum makecache && \
-    yum update -y && \
-    yum install -y mongodb-org java-1.8.0-openjdk unzip && \
-    yum clean all
-
-# set java environment
-ENV JAVA_HOME "/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
-ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
 
 # set unifi environment
 ENV UNIFI_VERSION "5.5.24"
 
-# install unifi
-RUN curl http://dl.ubnt.com/unifi/$UNIFI_VERSION/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
+# install software
+#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+#    apk update
+RUN apk update && \
+    apk add --no-cache openjdk8-jre && \
+    apk add --no-cache mongodb && \
+    wget http://dl.ubnt.com/unifi/$UNIFI_VERSION/UniFi.unix.zip -O /tmp/UniFi.unix.zip && \
     unzip /tmp/UniFi.unix.zip -d /tmp/ && \
-    mv /tmp/UniFi/ /opt/unifi/ && \
-    rm -rf /tmp/*
+    mv /tmp/UniFi/ /unifi/ && \
+    rm -rf /tmp/* && \
+    rm -rf /unifi/bin/mongod && \
+    ln -s /usr/bin/mongod /unifi/bin/mongod
 
-VOLUME ["/opt/unifi/data"]
-VOLUME ["/opt/unifi/logs"]
+VOLUME ["/unifi/data"]
+VOLUME ["/unifi/logs"]
+
 EXPOSE 8080/tcp 8443/tcp 8880/tcp 8843/tcp 6789/tcp 3478/udp 10001/udp
-WORKDIR /opt/unifi
-ENTRYPOINT ["java","-jar","/opt/unifi/lib/ace.jar","start"]
+
+WORKDIR /unifi
+ENTRYPOINT ["java","-jar","/unifi/lib/ace.jar","start"]
