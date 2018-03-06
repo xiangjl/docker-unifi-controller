@@ -9,10 +9,6 @@ MAINTAINER XiangJL <xjl-tommy@qq.com>
 # set unifi environment
 ENV UNIFI_VERSION "5.6.30"
 
-# set environment
-ENV JAVA_HOME "/usr/lib/jvm/java-1.8-openjdk"
-ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
-
 # install software
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
 #    apk update
@@ -25,6 +21,10 @@ RUN apk update && \
     rm -rf /tmp/* && \
     rm -rf /unifi/bin/mongod && \
     ln -s /usr/bin/mongod /unifi/bin/mongod
+
+# set environment
+ENV JAVA_HOME "/usr/lib/jvm/java-1.8-openjdk"
+ENV CLASSPATH ".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:/unifi/lib"
 
 VOLUME ["/unifi/data"]
 VOLUME ["/unifi/logs"]
