@@ -16,7 +16,7 @@ RUN yum makecache fast && \
     yum clean all
 
 # set unifi environment
-ENV UNIFI_VERSION "5.6.39"
+ENV UNIFI_VERSION "5.8.24"
 
 # install unifi
 RUN curl http://dl.ubnt.com/unifi/$UNIFI_VERSION/UniFi.unix.zip > /tmp/UniFi.unix.zip && \
